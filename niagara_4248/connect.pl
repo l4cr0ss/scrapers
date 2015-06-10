@@ -29,8 +29,8 @@ print "$pass\n";
 print "$host\n";
 
 
-#$t = new Net::Telnet (Timeout => 10, Prompt => '/bash\$ $/');
-#$t->open($host);
-#$t->login($user, $pass);
-#@lines = $t->cmd("show system info");
-#print @lines;
+$t = new Net::Telnet (Timeout => 10, Prompt => '/bash\$ $/');
+$t->open($host);
+$t->login($user, $pass);
+@lines = $t->cmd("show system info");
+print @lines;
