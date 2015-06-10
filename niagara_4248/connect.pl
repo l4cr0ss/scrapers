@@ -26,6 +26,7 @@ for ($i=0; $i<3; $i++) {
 
 my ($t, @output);
 $t = new Net::Telnet (Timeout => 10, 
+                      Prompt => '/[\$%#>] $/',
                       Input_log => 'input.log', 
                       Output_log => 'output.log',
                       Dump_log => 'dump.log');
