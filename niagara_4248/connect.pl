@@ -31,3 +31,6 @@ $t->login($user, $pass);
 
 my @lines = $t->cmd("show system info");
 print @lines;
+
+@lines = $t->cmd("show port sfp");
+print @lines;
