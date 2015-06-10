@@ -26,15 +26,15 @@ for ($i=0; $i<3; $i++) {
 
 my ($t, @output);
 $t = new Net::Telnet (Timeout => 10, 
-                      Prompt => '(/[\$%#>] $/|--more--)',
+                      Prompt => '/([\$%#>] $|--More--)/',
                       Input_log => 'input.log', 
                       Output_log => 'output.log',
                       Dump_log => 'dump.log');
 $t->open($host);
 $t->login($user, $pass);
 
-my @lines = $t->cmd("show system info");
-print @lines;
+#my @lines = $t->cmd("show system info");
+#print @lines;
 
-# @lines = $t->cmd("show port sfp");
-# print @lines;
+my @lines = $t->cmd("show port sfp");
+print @lines;
