@@ -29,8 +29,14 @@ $t = new Net::Telnet (Timeout => 10);
 $t->open($host);
 $t->login($user, $pass);
 
-my @lines = $t->cmd("show system info");
+$t->print("show system info");
+@lines = $telnet->waitfor('/.*/i');
 print @lines;
 
-@lines = $t->cmd("show port sfp");
-print @lines;
+# my @lines = $t->cmd("show system info");
+# print @lines;
+
+# $t->print("show port sfp");
+
+# @lines = $t->cmd("show port sfp");
+# print @lines;
