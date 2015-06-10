@@ -5,7 +5,24 @@
 use strict;
 use warnings;
 
-# Import libraries
-use Config::Simple;
+my $filename = 'app.ini';
+open(my $fh, '<:encoding(UTF-8)', $filename)
+  or die "Could not open file '$filename' $!";
 
-Config::Simple->import_from('app.ini', \%Config);
+my $l1 = 1;
+my $user = "";
+my $pass = "";
+for (my $i=0; $i<2; $i++) {
+  my $row = <$fh>;
+  chomp $row;
+  if ($l1 == 1) {
+    $user = $row;
+    $l1 = 0;
+  } else {
+    $pass = $row; 
+  }
+}
+
+print "$user\n";
+print "$pass\n";
+
