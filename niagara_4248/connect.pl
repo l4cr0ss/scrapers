@@ -4,7 +4,7 @@
 
 use strict;
 use warnings;
-
+use Net::Telnet();
 my $filename = 'app.ini';
 open(my $fh, '<:encoding(UTF-8)', $filename)
   or die "Could not open file '$filename' $!";
@@ -26,3 +26,8 @@ for (my $i=0; $i<2; $i++) {
 print "$user\n";
 print "$pass\n";
 
+$t = new Net::Telnet (Timeout => 10, Prompt => '/bash\$ $/');
+$t->open($host);
+$t->login($user, $pass);
+@lines = $t->cmd("show system info");
+print @lines;
