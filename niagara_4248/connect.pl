@@ -25,18 +25,12 @@ for ($i=0; $i<3; $i++) {
 }
 
 my ($t, @output);
-$t = new Net::Telnet (Timeout => 10);
+$t = new Net::Telnet (Timeout => 10, Input_log => 'input.log', Output_log => 'output.log');
 $t->open($host);
 $t->login($user, $pass);
 
-$t->print("show system info");
-@lines = $telnet->waitfor('/.*/i');
+my @lines = $t->cmd("show system info");
 print @lines;
-
-# my @lines = $t->cmd("show system info");
-# print @lines;
-
-# $t->print("show port sfp");
 
 # @lines = $t->cmd("show port sfp");
 # print @lines;
