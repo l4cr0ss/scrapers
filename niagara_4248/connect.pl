@@ -24,10 +24,6 @@ for ($i=0; $i<3; $i++) {
   }
 }
 
-print "$user\n";
-print "$pass\n";
-print "$host\n";
-
 my ($t, @output);
 $t = new Net::Telnet (Timeout => 10);
 $t->open($host);
