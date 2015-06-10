@@ -28,10 +28,10 @@ print "$user\n";
 print "$pass\n";
 print "$host\n";
 
-
-my $t = new Net::Telnet (Timeout => 10, Prompt => '/.*login[: ]*$/i');
+my ($t, @output);
+$t = new Net::Telnet (Timeout => 10);
 $t->open($host);
-
 $t->login($user, $pass);
+
 my @lines = $t->cmd("show system info");
 print @lines;
