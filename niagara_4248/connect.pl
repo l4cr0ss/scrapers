@@ -29,7 +29,7 @@ print "$pass\n";
 print "$host\n";
 
 
-my $t = new Net::Telnet (Timeout => 10, Prompt => '/*login[: ]*$/i');
+my $t = new Net::Telnet (Timeout => 10, Prompt => '/.*login[: ]*$/i');
 $t->open($host);
 
 $t->login($user, $pass);
