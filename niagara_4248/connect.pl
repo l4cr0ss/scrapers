@@ -94,7 +94,5 @@ foreach(@output) {
 	$_ =~ s/\[27m//g;
 	$_ =~ s///g;
 	$_ =~ s/^\s+//;
-	if ($_ ne "\$") { 
-		print $_;
-	}
+	print $_;
 }
