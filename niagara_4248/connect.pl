@@ -45,6 +45,7 @@ my $timeout = 10;
 my @output;
 
 my $e = Expect->new();
+$e->raw_pty(1);
 $e->log_stdout(0);
 $e->spawn('telnet', $host);
 $e->expect($timeout, 
@@ -67,7 +68,8 @@ $e->expect($timeout,
 			my $exp = shift;
 			my $cmd = shift @cmds;
 			$exp->send($cmd . "\n");
-			push @output, $exp->before();
+			$str = $exp->before();
+			push @output, $str;
 			if ($num_cmds > 0) {
 				$num_cmds--;
 				exp_continue;
@@ -78,11 +80,21 @@ $e->expect($timeout,
 	'\-\-More--' => sub {
 			my $exp = shift;
 			$exp->send("" . "\n");
-			push @output, $exp->before();
+			$str = $exp->before();
+			push @output, $str;
 			exp_continue;
 			}
 	]
 	);
+
 foreach(@output) {
-	print $_;
+	$_ =~ s/\[100B//g;
+	$_ =~ s///g;
+	$_ =~ s/\[K//g;
+	$_ =~ s/\[27m//g;
+	$_ =~ s///g;
+	$_ =~ s/^\s+//;
+	if ($_ ne "\$") { 
+		print $_;
 	}
+}
