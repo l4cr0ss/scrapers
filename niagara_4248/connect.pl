@@ -3,6 +3,7 @@
 # Connect to the Niagra 4248 via telnet
 
 use Expect;
+$Expect::Debug=1;
 use Switch;
 my $filename = 'app.ini';
 open(my $fh, '<:encoding(UTF-8)', $filename)
@@ -23,5 +24,10 @@ for ($i=0; $i<3; $i++) {
   }
 }
 
+my $prompt = '/[\$%#>] $/';
+my $timeout = 3;
 
-
+# Create the expect object
+my $e = Expect->new();
+$e->spawn('telnet', $host);
+$e->expect($timeout, 'login:','-re',$prompt);
