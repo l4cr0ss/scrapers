@@ -51,6 +51,11 @@ def Main():
 	d[1] = mods.show_port_sfp(data[1])
 	d[2] = mods.show_interfaces_status(data[2])
 	d[3] = mods.show_ip_interface(data[3])
+
+
+	# Build the rows to be written to excel
+	rows = []
+	
 	
 	for k,v in d.items():
 		dump_output(v)
